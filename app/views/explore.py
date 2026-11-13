@@ -83,9 +83,17 @@ with tab_view:
     preds = {m: unpack(bundle[f"{gid}_{year}_pred_{m}"], n) for m in MODELS}
     inv_layer = [(label, COLORS["inventory"])] if show["inventory"] else []
 
+    no_data = float((bundle[f"{gid}_{year}_rgb"].max(axis=0) == 0).mean())
+
     left, right = st.columns([3, 2], gap="large")
     with left:
-        if view == "Overlay":
+        if no_data > 0.25:
+            st.info(
+                f"No usable satellite image of {g['name']} in {year}: "
+                f"{no_data:.0%} of the area lies outside every clear Sentinel-2 scene of that "
+                "summer. This year is left out of the trend. Pick another year."
+            )
+        elif view == "Overlay":
             layers = inv_layer + [(preds[m], COLORS[m]) for m in MODELS if show[m]]
             st.pyplot(glacier_figure(rgb, layers, invalid), width="stretch")
         else:
@@ -96,9 +104,10 @@ with tab_view:
                     rgb, inv_layer + [(preds[m], COLORS[m])], invalid, MODEL_LABELS[m], size=4
                 )
                 col.pyplot(fig, width="stretch")
-        keys = (["inventory"] if show["inventory"] else []) + [m for m in MODELS if show[m]]
-        st.html(legend_html(keys))
-        if year != g["gi5_year"]:
+        if no_data <= 0.25:
+            keys = (["inventory"] if show["inventory"] else []) + [m for m in MODELS if show[m]]
+            st.html(legend_html(keys))
+        if year != g["gi5_year"] and no_data <= 0.25:
             st.caption(
                 f"The inventory outline is from {g['gi5_year']}. In {year} the real glacier edge "
                 "may differ, so treat it as a reference, not the truth for this year."
@@ -108,11 +117,14 @@ with tab_view:
         row = ts[(ts["glacier_id"] == gid) & (ts["year"] == year)].iloc[0]
         cloud = row["invalid_fraction_in_region"]
         st.markdown(f"#### {g['name']}")
-        st.markdown(
-            f"**{SPLIT_LABELS[g['split']].capitalize()}** · scene from "
-            f"**{row['acquisition_date']}** · clouds over the glacier: "
-            f"**{'none' if cloud == 0 else f'{cloud:.1%}'}**"
-        )
+        if no_data > 0.25:
+            status = "**no usable image this year**"
+        else:
+            status = (
+                f"scene from **{row['acquisition_date']}** · clouds over the glacier: "
+                f"**{'none' if cloud == 0 else f'{cloud:.1%}'}**"
+            )
+        st.markdown(f"**{SPLIT_LABELS[g['split']].capitalize()}** · {status}")
         with st.expander("Why are there almost never clouds?"):
             st.markdown(
                 "For every glacier and year the pipeline checks up to 25 late-summer images and "

@@ -13,6 +13,13 @@ from scipy.ndimage import binary_dilation, binary_erosion
 INVENTORY_RGB = (255, 61, 242)  # magenta
 MODEL_RGB = (45, 225, 252)  # cyan
 HALO_RGB = (20, 20, 20)
+# Skip a year when more than this share of the image has no satellite data (scene edge)
+MAX_NO_DATA = 0.25
+
+
+def no_data_fraction(rgb_chw: np.ndarray) -> float:
+    """Share of pixels outside the satellite scene (all bands zero)."""
+    return float((rgb_chw.max(axis=0) == 0).mean())
 
 
 def _edge(mask: np.ndarray, width: int) -> np.ndarray:
@@ -47,6 +54,8 @@ def build_gifs(processed_dir: Path, figures_dir: Path, model: str = "unet", scal
         label = _unpack(bundle[f"{gid}_label"], n)
         frames = []
         for yr in meta["_years"]:
+            if no_data_fraction(bundle[f"{gid}_{yr}_rgb"]) > MAX_NO_DATA:
+                continue
             rgb = np.transpose(bundle[f"{gid}_{yr}_rgb"], (1, 2, 0)).copy()
             rgb = np.repeat(np.repeat(rgb, scale, axis=0), scale, axis=1)
             up = np.ones((scale, scale), dtype=bool)
