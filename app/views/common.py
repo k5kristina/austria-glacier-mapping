@@ -105,6 +105,15 @@ def unpack(bits: np.ndarray, n: int) -> np.ndarray:
     return np.unpackbits(bits)[: n * n].reshape(n, n).astype(bool)
 
 
+def show_gif(path: Path) -> None:
+    """Show an animated GIF scaled to its container.
+
+    Never pass a pixel ``width`` to ``st.image`` for a GIF: Streamlit then resizes it on the
+    server and keeps only the first frame. Stretching to the column is done by the browser.
+    """
+    st.image(str(path), width="stretch")
+
+
 def eyebrow(text: str) -> None:
     """Small accent label shown above a section heading."""
     st.html(f'<div class="eyebrow">{text}</div>')

@@ -11,6 +11,7 @@ from views.common import (
     load_summary,
     load_table,
     outputs_available,
+    show_gif,
 )
 
 inject_css()
@@ -183,7 +184,7 @@ eyebrow("Time-lapse")
 st.markdown("## Pasterze, Austria's largest glacier")
 g1, g2 = st.columns([1.15, 1])
 with g1:
-    st.image(str(FIGURES_DIR / "pasterze_2017_2025.gif"), width="stretch")
+    show_gif(FIGURES_DIR / "pasterze_2017_2025.gif")
 with g2:
     st.html(
         '<div class="muted" style="margin-top:.4rem">'

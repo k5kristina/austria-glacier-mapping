@@ -26,6 +26,7 @@ from views.common import (
     load_summary,
     load_table,
     outputs_available,
+    show_gif,
     unpack,
 )
 
@@ -181,7 +182,9 @@ with tab_view:
     gif = PROCESSED_DIR / "gifs" / f"{gid}.gif"
     if gif.exists():
         with st.expander(f"Animation: {g['name']} 2017–2025 (U-Net in cyan, inventory in magenta)"):
-            st.image(str(gif), width=520)
+            col, _ = st.columns([1, 1])
+            with col:
+                show_gif(gif)
 
 # ------------------------------------------------------------------------------------------------
 # Model comparison
