@@ -1,0 +1,6 @@
+# Only what the website needs (the full pipeline uses ../requirements.txt)
+streamlit>=1.40
+pandas>=2.1
+numpy>=1.26
+matplotlib>=3.8
+altair>=5.0

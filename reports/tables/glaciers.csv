@@ -1,0 +1,20 @@
+glacier_id,glacier_name,region,split,gi5_year,area_gi5_km2,area_gi4_2015_km2,grid_size_px
+AT_OET_01,Gepatschferner,Oetztal,train,2023,14.647,15.7688,376
+AT_OET_02,Mittelbergferner,Oetztal,train,2023,8.302,8.4481,320
+AT_OET_03,Hintereisferner,Oetztal,train,2023,5.6174,,392
+AT_OET_04,Vernagtferner,Oetztal,val,2023,6.1157,7.349,304
+AT_OET_05,Kesselwandferner,Oetztal,val,2023,3.3507,3.4266,192
+AT_HT_01,Pasterze,Hohe_Tauern,train,2022,14.7229,15.8259,432
+AT_HT_02,Obersulzbachkees,Hohe_Tauern,train,2022,7.8012,8.539,392
+AT_HT_03,Schlatenkees,Hohe_Tauern,train,2022,6.8704,7.6512,312
+AT_HT_04,Goldbergkees,Hohe_Tauern,val,2023,0.5926,0.6856,104
+AT_HT_05,Kleinfleisskees,Hohe_Tauern,val,2023,0.71,0.7581,88
+AT_STU_01,Sulztalferner,Stubai,train,2023,2.8047,3.1073,160
+AT_STU_02,Schaufelferner,Stubai,train,2023,0.8154,0.9811,112
+AT_STU_03,Alpeiner Ferner,Stubai,val,2023,2.4196,2.8704,184
+AT_SIL_01,Jamtalferner,Silvretta,test,2023,2.2354,2.7969,216
+AT_SIL_02,Ochsentaler Gletscher,Silvretta,test,2023,1.8935,2.0994,136
+AT_SIL_03,Vermuntgletscher,Silvretta,test,2023,0.819,0.7637,144
+AT_DAC_01,Hallstätter Gletscher,Dachstein,test,2021,2.5583,2.7976,168
+AT_DAC_02,Schladminger Gletscher,Dachstein,test,2021,0.66,0.6952,104
+AT_DAC_03,Grosser Gosaugletscher,Dachstein,test,2021,0.9427,1.0372,120

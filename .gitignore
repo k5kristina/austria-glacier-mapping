@@ -1,0 +1,38 @@
+# Byte-compiled / packaging
+__pycache__/
+*.py[cod]
+build/
+dist/
+*.egg-info/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Downloaded and derived data (re-created by `glacier-pipeline download` / `run`)
+data/external/
+data/raw/
+data/processed/*
+# ...except the small outputs the website needs, so it runs straight from the repo
+!data/processed/app_bundle.npz
+!data/processed/app_meta.json
+!data/processed/gifs/
+
+# Model weights (re-created by `glacier-pipeline run`)
+models/checkpoints/
+
+# Tool caches
+.pytest_cache/
+.coverage
+htmlcov/
+.ruff_cache/
+.mypy_cache/
+
+# OS files & local notes
+.DS_Store
+Thumbs.db
+ТЗ*.md
+
+# Private planning notes
+FUTURE_PLAN.md

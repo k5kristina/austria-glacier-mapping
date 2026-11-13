@@ -1,0 +1,204 @@
+{
+  "AT_OET_01": {
+    "name": "Gepatschferner",
+    "region_display": "\u00d6tztal Alps",
+    "size_px": 376,
+    "gi5_year": 2023,
+    "gi4_matched": true,
+    "area_gi4_km2": 15.7688,
+    "area_gi5_km2": 14.647,
+    "split": "train"
+  },
+  "AT_OET_02": {
+    "name": "Mittelbergferner",
+    "region_display": "\u00d6tztal Alps",
+    "size_px": 320,
+    "gi5_year": 2023,
+    "gi4_matched": true,
+    "area_gi4_km2": 8.4481,
+    "area_gi5_km2": 8.302,
+    "split": "train"
+  },
+  "AT_OET_03": {
+    "name": "Hintereisferner",
+    "region_display": "\u00d6tztal Alps",
+    "size_px": 392,
+    "gi5_year": 2023,
+    "gi4_matched": false,
+    "area_gi4_km2": null,
+    "area_gi5_km2": 5.6174,
+    "split": "train"
+  },
+  "AT_OET_04": {
+    "name": "Vernagtferner",
+    "region_display": "\u00d6tztal Alps",
+    "size_px": 304,
+    "gi5_year": 2023,
+    "gi4_matched": true,
+    "area_gi4_km2": 7.349,
+    "area_gi5_km2": 6.1157,
+    "split": "val"
+  },
+  "AT_OET_05": {
+    "name": "Kesselwandferner",
+    "region_display": "\u00d6tztal Alps",
+    "size_px": 192,
+    "gi5_year": 2023,
+    "gi4_matched": true,
+    "area_gi4_km2": 3.4266,
+    "area_gi5_km2": 3.3507,
+    "split": "val"
+  },
+  "AT_HT_01": {
+    "name": "Pasterze",
+    "region_display": "Hohe Tauern",
+    "size_px": 432,
+    "gi5_year": 2022,
+    "gi4_matched": true,
+    "area_gi4_km2": 15.8259,
+    "area_gi5_km2": 14.7229,
+    "split": "train"
+  },
+  "AT_HT_02": {
+    "name": "Obersulzbachkees",
+    "region_display": "Hohe Tauern",
+    "size_px": 392,
+    "gi5_year": 2022,
+    "gi4_matched": true,
+    "area_gi4_km2": 8.539,
+    "area_gi5_km2": 7.8012,
+    "split": "train"
+  },
+  "AT_HT_03": {
+    "name": "Schlatenkees",
+    "region_display": "Hohe Tauern",
+    "size_px": 312,
+    "gi5_year": 2022,
+    "gi4_matched": true,
+    "area_gi4_km2": 7.6512,
+    "area_gi5_km2": 6.8704,
+    "split": "train"
+  },
+  "AT_HT_04": {
+    "name": "Goldbergkees",
+    "region_display": "Hohe Tauern",
+    "size_px": 104,
+    "gi5_year": 2023,
+    "gi4_matched": true,
+    "area_gi4_km2": 0.6856,
+    "area_gi5_km2": 0.5926,
+    "split": "val"
+  },
+  "AT_HT_05": {
+    "name": "Kleinfleisskees",
+    "region_display": "Hohe Tauern",
+    "size_px": 88,
+    "gi5_year": 2023,
+    "gi4_matched": true,
+    "area_gi4_km2": 0.7581,
+    "area_gi5_km2": 0.71,
+    "split": "val"
+  },
+  "AT_STU_01": {
+    "name": "Sulztalferner",
+    "region_display": "Stubai Alps",
+    "size_px": 160,
+    "gi5_year": 2023,
+    "gi4_matched": true,
+    "area_gi4_km2": 3.1073,
+    "area_gi5_km2": 2.8047,
+    "split": "train"
+  },
+  "AT_STU_02": {
+    "name": "Schaufelferner",
+    "region_display": "Stubai Alps",
+    "size_px": 112,
+    "gi5_year": 2023,
+    "gi4_matched": true,
+    "area_gi4_km2": 0.9811,
+    "area_gi5_km2": 0.8154,
+    "split": "train"
+  },
+  "AT_STU_03": {
+    "name": "Alpeiner Ferner",
+    "region_display": "Stubai Alps",
+    "size_px": 184,
+    "gi5_year": 2023,
+    "gi4_matched": true,
+    "area_gi4_km2": 2.8704,
+    "area_gi5_km2": 2.4196,
+    "split": "val"
+  },
+  "AT_SIL_01": {
+    "name": "Jamtalferner",
+    "region_display": "Silvretta",
+    "size_px": 216,
+    "gi5_year": 2023,
+    "gi4_matched": true,
+    "area_gi4_km2": 2.7969,
+    "area_gi5_km2": 2.2354,
+    "split": "test"
+  },
+  "AT_SIL_02": {
+    "name": "Ochsentaler Gletscher",
+    "region_display": "Silvretta",
+    "size_px": 136,
+    "gi5_year": 2023,
+    "gi4_matched": true,
+    "area_gi4_km2": 2.0994,
+    "area_gi5_km2": 1.8935,
+    "split": "test"
+  },
+  "AT_SIL_03": {
+    "name": "Vermuntgletscher",
+    "region_display": "Silvretta",
+    "size_px": 144,
+    "gi5_year": 2023,
+    "gi4_matched": true,
+    "area_gi4_km2": 0.7637,
+    "area_gi5_km2": 0.819,
+    "split": "test"
+  },
+  "AT_DAC_01": {
+    "name": "Hallst\u00e4tter Gletscher",
+    "region_display": "Dachstein",
+    "size_px": 168,
+    "gi5_year": 2021,
+    "gi4_matched": true,
+    "area_gi4_km2": 2.7976,
+    "area_gi5_km2": 2.5583,
+    "split": "test"
+  },
+  "AT_DAC_02": {
+    "name": "Schladminger Gletscher",
+    "region_display": "Dachstein",
+    "size_px": 104,
+    "gi5_year": 2021,
+    "gi4_matched": true,
+    "area_gi4_km2": 0.6952,
+    "area_gi5_km2": 0.66,
+    "split": "test"
+  },
+  "AT_DAC_03": {
+    "name": "Grosser Gosaugletscher",
+    "region_display": "Dachstein",
+    "size_px": 120,
+    "gi5_year": 2021,
+    "gi4_matched": true,
+    "area_gi4_km2": 1.0372,
+    "area_gi5_km2": 0.9427,
+    "split": "test"
+  },
+  "_model": "unet",
+  "_years": [
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "n_glaciers": 19,
+  "n_training_tiles": 1650,
+  "selected_model": "unet",
+  "ndsi_threshold": 0.38,
+  "test_pooled_iou": {
+    "ndsi": 0.7595,
+    "rf": 0.7655,
+    "unet": 0.7999
+  },
+  "test_pooled_iou_ci95": {
+    "ndsi": [
+      0.6389,
+      0.8698
+    ],
+    "rf": [
+      0.6777,
+      0.8474
+    ],
+    "unet": [
+      0.7129,
+      0.8899
+    ]
+  },
+  "unet_single_seed_test_iou_mean_sd": [
+    0.7911,
+    0.0117
+  ],
+  "median_glacier_trend_pct_per_yr": -1.93,
+  "median_inventory_rate_pct_per_yr": -1.23,
+  "snow_vs_temperature": {
+    "n_glacier_years": 157.0,
+    "slope_per_degC": -0.1689,
+    "slope_se": 0.0434,
+    "p_value": 0.0002,
+    "slope_per_day": 0.0032,
+    "n_years": 9.0,
+    "yearly_mean_pearson_r": -0.5167,
+    "yearly_mean_pearson_p": 0.1543
+  }
+}

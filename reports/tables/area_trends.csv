@@ -1,0 +1,20 @@
+glacier_id,glacier_name,split,n_years,median_area_km2,slope_km2_per_yr,slope_pct_per_yr,slope_ci95_pct,mann_kendall_tau,mann_kendall_p,inventory_pct_per_yr_gi4_to_gi5
+AT_OET_01,Gepatschferner,train,9,15.19,-0.1144,-0.75,"[-1.19, -0.28]",-0.667,0.0165,-0.89
+AT_OET_02,Mittelbergferner,train,9,8.09,-0.0915,-1.13,"[-1.84, -0.46]",-0.611,0.0286,-0.22
+AT_OET_03,Hintereisferner,train,8,5.904,-0.1247,-2.11,"[-2.87, -1.04]",-0.714,0.0187,
+AT_OET_04,Vernagtferner,val,9,6.644,-0.1874,-2.82,"[-3.99, -0.73]",-0.889,0.0012,-2.1
+AT_OET_05,Kesselwandferner,val,9,3.356,-0.024,-0.72,"[-1.38, -0.21]",-0.556,0.0476,-0.28
+AT_HT_01,Pasterze,train,8,15.472,-0.199,-1.29,"[-2.06, -0.58]",-0.714,0.0187,-1.0
+AT_HT_02,Obersulzbachkees,train,8,8.122,-0.1284,-1.58,"[-2.24, -0.97]",-0.857,0.0044,-1.23
+AT_HT_03,Schlatenkees,train,8,7.522,-0.1332,-1.77,"[-2.61, -1.00]",-0.929,0.002,-1.46
+AT_HT_04,Goldbergkees,val,8,0.624,-0.0178,-2.85,"[-5.42, -1.05]",-0.714,0.0187,-1.7
+AT_HT_05,Kleinfleisskees,val,8,0.781,-0.0117,-1.5,"[-2.94, 0.09]",-0.571,0.0635,-0.79
+AT_STU_01,Sulztalferner,train,8,2.98,-0.0458,-1.54,"[-2.95, -0.51]",-0.643,0.0354,-1.22
+AT_STU_02,Schaufelferner,train,8,0.953,-0.0258,-2.7,"[-4.97, -1.19]",-0.786,0.0094,-2.11
+AT_STU_03,Alpeiner Ferner,val,8,2.488,-0.0395,-1.59,"[-3.15, 1.96]",-0.357,0.2655,-1.96
+AT_SIL_01,Jamtalferner,test,8,2.664,-0.0626,-2.35,"[-3.21, -1.81]",-0.714,0.0187,-2.51
+AT_SIL_02,Ochsentaler Gletscher,test,9,1.92,-0.037,-1.93,"[-2.80, -1.37]",-0.778,0.0049,-1.23
+AT_SIL_03,Vermuntgletscher,test,8,0.749,-0.0308,-4.12,"[-5.77, -3.10]",-0.786,0.0094,0.91
+AT_DAC_01,Hallstätter Gletscher,test,8,2.545,-0.0617,-2.42,"[-3.66, -1.44]",-1.0,0.0008,-1.43
+AT_DAC_02,Schladminger Gletscher,test,8,0.622,-0.0163,-2.61,"[-4.92, 1.89]",-0.5,0.1078,-0.84
+AT_DAC_03,Grosser Gosaugletscher,test,8,0.861,-0.0462,-5.37,"[-7.41, -3.41]",-0.929,0.002,-1.52

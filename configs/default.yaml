@@ -1,0 +1,24 @@
+# Glacier mapping in the Austrian Alps from Sentinel-2
+project:
+  name: "austria-glacier-monitoring"
+  seed: 42
+
+data:
+  years: [2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025]
+  pixel_size_m: 20.0 # all rasters are warped to a 20 m UTM 32N grid per glacier
+
+training:
+  # Imagery from the GI 5 mapping year +/- this many years is paired with the GI 5 outline for
+  # training (glaciers change by ~1-2 % per year, so the label is still close). Evaluation always
+  # uses the mapping year itself.
+  label_year_window: 1
+  seeds: [42, 137, 2026]
+  epochs: 40
+  patience: 8
+  batch_size: 16
+  lr: 0.0015
+  base_channels: 24
+
+timeseries:
+  # Skip a glacier-year when more than this share of the glacier region is cloud / no data
+  max_invalid_fraction: 0.03
