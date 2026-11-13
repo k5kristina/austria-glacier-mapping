@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import altair as alt
-import numpy as np
 import pandas as pd
 import streamlit as st
 from views.common import (
@@ -18,8 +17,8 @@ from views.common import (
     PROCESSED_DIR,
     SPLIT_LABELS,
     eyebrow,
-    glacier_figure,
     glacier_ids,
+    glacier_png,
     inject_css,
     legend_html,
     load_bundle,
@@ -27,7 +26,6 @@ from views.common import (
     load_table,
     outputs_available,
     show_gif,
-    unpack,
 )
 
 inject_css()
@@ -50,10 +48,13 @@ tab_view, tab_models, tab_trends, tab_method = st.tabs(
     ["🛰️ Glacier viewer", "📊 Model comparison", "📉 Trends & climate", "🔬 Method & data"]
 )
 
+
 # ------------------------------------------------------------------------------------------------
 # Glacier viewer
 # ------------------------------------------------------------------------------------------------
-with tab_view:
+@st.fragment
+def glacier_viewer() -> None:
+    """Runs on its own, so moving the year slider does not rebuild the other tabs."""
     ids = sorted(
         glacier_ids(meta), key=lambda g: (["test", "val", "train"].index(meta[g]["split"]), g)
     )
@@ -76,12 +77,7 @@ with tab_view:
     }
     show_clouds = l5.checkbox("Shade clouds", value=True)
 
-    n = g["size_px"]
-    rgb = np.transpose(bundle[f"{gid}_{year}_rgb"], (1, 2, 0))
-    label = unpack(bundle[f"{gid}_label"], n)
-    invalid = unpack(bundle[f"{gid}_{year}_invalid"], n) if show_clouds else None
-    preds = {m: unpack(bundle[f"{gid}_{year}_pred_{m}"], n) for m in MODELS}
-    inv_layer = [(label, COLORS["inventory"])] if show["inventory"] else []
+    inv_layer = ("inventory",) if show["inventory"] else ()
 
     no_data = float((bundle[f"{gid}_{year}_rgb"].max(axis=0) == 0).mean())
 
@@ -94,16 +90,14 @@ with tab_view:
                 "summer. This year is left out of the trend. Pick another year."
             )
         elif view == "Overlay":
-            layers = inv_layer + [(preds[m], COLORS[m]) for m in MODELS if show[m]]
-            st.pyplot(glacier_figure(rgb, layers, invalid), width="stretch")
+            layers = inv_layer + tuple(m for m in MODELS if show[m])
+            st.image(glacier_png(gid, year, layers, show_clouds), width="stretch")
         else:
             chosen = [m for m in MODELS if show[m]] or ["unet"]
             cols = st.columns(len(chosen))
             for col, m in zip(cols, chosen, strict=True):
-                fig = glacier_figure(
-                    rgb, inv_layer + [(preds[m], COLORS[m])], invalid, MODEL_LABELS[m], size=4
-                )
-                col.pyplot(fig, width="stretch")
+                png = glacier_png(gid, year, (*inv_layer, m), show_clouds, MODEL_LABELS[m], size=4)
+                col.image(png, width="stretch")
         if no_data <= 0.25:
             keys = (["inventory"] if show["inventory"] else []) + [m for m in MODELS if show[m]]
             st.html(legend_html(keys))
@@ -198,6 +192,10 @@ with tab_view:
             with col:
                 show_gif(gif)
 
+
+with tab_view:
+    glacier_viewer()
+
 # ------------------------------------------------------------------------------------------------
 # Model comparison
 # ------------------------------------------------------------------------------------------------
@@ -242,8 +240,8 @@ of the combined area disagrees.
     with b:
         st.markdown("#### What the numbers say")
         st.markdown(f"""
-- The **U-Net** is best ({summary['test_pooled_iou']['unet']:.2f}), ahead of the Random Forest
-  ({summary['test_pooled_iou']['rf']:.2f}) and the NDSI threshold ({summary['test_pooled_iou']['ndsi']:.2f}).
+- The **U-Net** is best ({summary["test_pooled_iou"]["unet"]:.2f}), ahead of the Random Forest
+  ({summary["test_pooled_iou"]["rf"]:.2f}) and the NDSI threshold ({summary["test_pooled_iou"]["ndsi"]:.2f}).
 - It also gets glacier **area** closest (median error 5 % vs 10–11 %).
 - Six test glaciers is a small sample, so the intervals overlap. The advantage is consistent,
   but its exact size is uncertain.
@@ -302,10 +300,10 @@ with tab_trends:
     )
     with t2:
         st.markdown(f"""
-- Median trend: **{summary['median_glacier_trend_pct_per_yr']:.1f} % per year**. The decline is
+- Median trend: **{summary["median_glacier_trend_pct_per_yr"]:.1f} % per year**. The decline is
   statistically clear (Mann–Kendall p < 0.05) for
-  **{int((trends['mann_kendall_p'] < 0.05).sum())} of {len(trends)}** glaciers.
-- The official inventories (2015 → 2021–23) give **{summary['median_inventory_rate_pct_per_yr']:.1f} % per year**.
+  **{int((trends["mann_kendall_p"] < 0.05).sum())} of {len(trends)}** glaciers.
+- The official inventories (2015 → 2021–23) give **{summary["median_inventory_rate_pct_per_yr"]:.1f} % per year**.
 - The satellite trend is a bit steeper. Two possible reasons: 2022 and 2025 were extreme melt
   years that fall after the inventory, and leftover snow in early years can make glaciers look
   larger.
@@ -374,11 +372,11 @@ For every glacier-year I measured how much of the glacier is still covered by br
 the end of summer, then compared it with that summer's temperature at the nearest GeoSphere
 station.
 
-- **{100 * clim['slope_per_degC']:.0f} percentage points of snow per +1 °C** (± {100 * clim['slope_se']:.0f}),
+- **{100 * clim["slope_per_degC"]:.0f} percentage points of snow per +1 °C** (± {100 * clim["slope_se"]:.0f}),
   after accounting for the image date (a September image naturally shows less snow than a July
   one).
 - Small dots are single glacier-years, large mint dots are yearly averages, and the dashed\n  line is a simple fit.
-- With only 9 summers, the yearly averages alone give r = {clim['yearly_mean_pearson_r']:.2f}:
+- With only 9 summers, the yearly averages alone give r = {clim["yearly_mean_pearson_r"]:.2f}:
   the right direction, but not statistically significant on their own.
 """)
 

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import io
 import json
 from pathlib import Path
 from typing import Any
@@ -156,3 +157,33 @@ def glacier_figure(
         ax.set_title(title, fontsize=12)
     fig.tight_layout(pad=0.2)
     return fig
+
+
+@st.cache_data(max_entries=300, show_spinner=False)
+def glacier_png(
+    gid: str,
+    year: int,
+    layers: tuple[str, ...],
+    shade_clouds: bool,
+    title: str | None = None,
+    size: float = 6.0,
+) -> bytes:
+    """Rendered glacier view as PNG, cached so revisiting a year is instant."""
+    meta, bundle = load_bundle()
+    n = meta[gid]["size_px"]
+    rgb = np.transpose(bundle[f"{gid}_{year}_rgb"], (1, 2, 0))
+    invalid = unpack(bundle[f"{gid}_{year}_invalid"], n) if shade_clouds else None
+    masks = [
+        (
+            unpack(
+                bundle[f"{gid}_label"] if k == "inventory" else bundle[f"{gid}_{year}_pred_{k}"], n
+            ),
+            COLORS[k],
+        )
+        for k in layers
+    ]
+    fig = glacier_figure(rgb, masks, invalid, title, size)
+    buf = io.BytesIO()
+    fig.savefig(buf, format="png", dpi=200, bbox_inches="tight")
+    plt.close(fig)
+    return buf.getvalue()
