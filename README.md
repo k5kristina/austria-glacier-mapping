@@ -1,5 +1,12 @@
 # Mapping Austrian Glaciers from Sentinel-2
 
+[![CI](https://github.com/k5kristina/austria-glacier-mapping/actions/workflows/ci.yml/badge.svg)](https://github.com/k5kristina/austria-glacier-mapping/actions/workflows/ci.yml)
+[![Website](https://img.shields.io/badge/website-austria--glaciers.streamlit.app-9fe3c9)](https://austria-glaciers.streamlit.app/)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
+**🌍 Explore it online: [austria-glaciers.streamlit.app](https://austria-glaciers.streamlit.app/)**: an
+interactive viewer with all models, every glacier and every year.
+
 A personal project on glacier mapping with satellite imagery and machine learning. I trained models to
 outline glaciers in Sentinel-2 images, tested them on mountain ranges they had never seen, and then
 used the best model to track 19 Austrian glaciers from 2017 to 2025.

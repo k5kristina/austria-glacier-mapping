@@ -180,9 +180,7 @@ with tab_view:
 
     gif = PROCESSED_DIR / "gifs" / f"{gid}.gif"
     if gif.exists():
-        with st.expander(
-            f"▶ Animation: {g['name']} 2017–2025 (U-Net in cyan, inventory in magenta)"
-        ):
+        with st.expander(f"Animation: {g['name']} 2017–2025 (U-Net in cyan, inventory in magenta)"):
             st.image(str(gif), width=520)
 
 # ------------------------------------------------------------------------------------------------
@@ -261,7 +259,7 @@ with tab_trends:
         rel=100 * ts["area_km2"] / ts.groupby("glacier_id")["area_km2"].transform("median")
     )
     med = rel.groupby("year", as_index=False)["rel"].median()
-    sel = alt.selection_point(fields=["glacier_name"], on="pointerover", nearest=True)
+    sel = alt.selection_point(fields=["glacier_name"], on="pointerover", nearest=True, empty=False)
     gl_lines = (
         alt.Chart(rel)
         .mark_line(strokeWidth=1.5)
@@ -306,7 +304,18 @@ with tab_trends:
         "mann_kendall_p": "Mann–Kendall p",
     }
     st.dataframe(
-        trends[list(show_cols)].rename(columns=show_cols), hide_index=True, width="stretch"
+        trends[list(show_cols)]
+        .assign(
+            inventory_pct_per_yr_gi4_to_gi5=trends["inventory_pct_per_yr_gi4_to_gi5"].map(
+                lambda v: "–" if pd.isna(v) else f"{v:.2f}"
+            )
+        )
+        .rename(columns=show_cols),
+        hide_index=True,
+        width="stretch",
+        column_config={
+            "Inventory %/yr": st.column_config.TextColumn(help="–: no matching GI 4 outline")
+        },
     )
 
     st.markdown("### Do warm summers leave less snow on the glaciers?")
